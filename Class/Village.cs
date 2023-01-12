@@ -57,7 +57,7 @@ class Village
         }
         _myRessources.useWood(villagers * Mine.wood_cost);
         _myRessources.useStone(villagers * Mine.stone_cost);
-        _myRessources.addStone(villagers * Mine.gain_stone);
+        _myRessources.addStone(myMine.mineStone(villagers));
     }
     public void cutWood(int villagers)
     {
@@ -78,6 +78,11 @@ class Village
         }
         _myRessources.useWood(villagers * Forest.wood_cost);
         _myRessources.useStone(villagers * Forest.stone_cost);
-        _myRessources.addWood(villagers * Forest.gain_wood);
+        _myRessources.addWood(myForest.cutWood(villagers));
+    }
+
+    public void buildHouse(int nbr)
+    {
+
     }
 }
