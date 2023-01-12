@@ -152,6 +152,7 @@ class Village
     }
     public void displayMenu()
     {
+        System.Console.WriteLine();
         System.Console.WriteLine("################################################################################################################");
         displayInfos();
         System.Console.WriteLine("################################################################################################################");
@@ -165,6 +166,7 @@ class Village
         System.Console.WriteLine("7 - Look Around");
         System.Console.WriteLine("8 - Quitter");
         System.Console.WriteLine("################################################################################################################");
+        System.Console.WriteLine();
 
         string userInput = Console.ReadLine();
 
@@ -198,10 +200,13 @@ class Village
 
 
     }
+    //  Display All Info Village
     public void displayInfos()
     {
         System.Console.WriteLine($"# NB HOUSE : {listHouse.Length} | NB VILLAGERS : {villageois} | NB WOOD : {_myRessources.getWood()} | NB STONES : {_myRessources.getStone()} | LVL RES: {_myRessources.level}  | LVL FOREST: {_myRessources.level} | LVL MINE: {_myRessources.level} #");
     }
+
+    // Tools Input User (string & int)
     private string getUserInputString(string msg)
     {
         string userInput = "";
