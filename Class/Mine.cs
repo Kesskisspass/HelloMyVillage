@@ -3,6 +3,7 @@ public class Mine
     public static readonly int gain_stone = 10;
     public static readonly int stone_cost = 2;
     public static readonly int wood_cost = 1;
+    private int level = 1;
 
     public Mine()
     {
@@ -12,5 +13,9 @@ public class Mine
     public int mineStone(int villagers)
     {
         return villagers * gain_stone;
+    }
+    public int getLevel()
+    {
+        return level;
     }
 }
