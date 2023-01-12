@@ -57,6 +57,10 @@ class Ressources
     {
         _stones += nbr;
     }
+    public void addWood(int nbr)
+    {
+        _woods += nbr;
+    }
 
 
 }

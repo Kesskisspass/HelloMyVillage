@@ -6,6 +6,7 @@ class Village
     public int villageois = 0;
     public House[] listHouse;
     public Mine myMine;
+    public Forest myForest;
 
     public Village(string name)
     {
@@ -15,6 +16,7 @@ class Village
         this.villageois += House.villageois;
         this.listHouse = new House[] { this.chefHome };
         this.myMine = new Mine();
+        this.myForest = new Forest();
     }
 
     public string getName()
@@ -56,5 +58,26 @@ class Village
         _myRessources.useWood(villagers * Mine.wood_cost);
         _myRessources.useStone(villagers * Mine.stone_cost);
         _myRessources.addStone(villagers * Mine.gain_stone);
+    }
+    public void cutWood(int villagers)
+    {
+        if (villagers > this.villageois)
+        {
+            System.Console.WriteLine("Not enough villagers");
+            return;
+        }
+        if (_myRessources.getWood() < (villagers * Forest.wood_cost))
+        {
+            Console.WriteLine("Not enough wood");
+            return;
+        }
+        if (_myRessources.getStone() < (villagers * Forest.stone_cost))
+        {
+            Console.WriteLine("Not enough stone");
+            return;
+        }
+        _myRessources.useWood(villagers * Forest.wood_cost);
+        _myRessources.useStone(villagers * Forest.stone_cost);
+        _myRessources.addWood(villagers * Forest.gain_wood);
     }
 }
