@@ -5,10 +5,10 @@ public class Mine
     public static readonly int wood_cost = 1;
     private int level = 1;
 
-    public Mine()
-    {
-        Console.WriteLine("Mine created");
-    }
+    // public Mine()
+    // {
+    //     Console.WriteLine("Mine created");
+    // }
 
     public int mineStone(int villagers)
     {

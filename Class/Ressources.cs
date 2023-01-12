@@ -12,6 +12,7 @@ class Ressources
     {
         _woods = 10;
         _stones = 10;
+        level = 1;
     }
 
     // getters

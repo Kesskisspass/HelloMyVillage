@@ -7,6 +7,7 @@ class Village
     public House[] listHouse;
     public Mine myMine;
     public Forest myForest;
+    public bool isPlaying;
 
     public Village(string name)
     {
@@ -17,6 +18,12 @@ class Village
         this.listHouse = new House[] { this.chefHome };
         this.myMine = new Mine();
         this.myForest = new Forest();
+
+        isPlaying = true;
+        while (isPlaying)
+        {
+            displayMenu();
+        }
     }
 
     public string getName()
@@ -142,5 +149,79 @@ class Village
             System.Console.WriteLine("Not enough ressources.");
         }
 
+    }
+    public void displayMenu()
+    {
+        System.Console.WriteLine("################################################################################################################");
+        displayInfos();
+        System.Console.WriteLine("################################################################################################################");
+        System.Console.WriteLine("Que voulez-vous faire ?");
+        System.Console.WriteLine("1 - Mine Stones");
+        System.Console.WriteLine("2 - Cut Wood");
+        System.Console.WriteLine("3 - Build House");
+        System.Console.WriteLine("4 - Upgrade Ressources");
+        System.Console.WriteLine("5 - Upgrade Forest");
+        System.Console.WriteLine("6 - Upgrade Mine");
+        System.Console.WriteLine("7 - Look Around");
+        System.Console.WriteLine("8 - Quitter");
+        System.Console.WriteLine("################################################################################################################");
+
+        string userInput = Console.ReadLine();
+
+        switch (userInput)
+        {
+            case "1":
+                mineStone(getUserInputInt("Combien de villageois voulez-vous envoyer ?"));
+                break;
+            case "2":
+                cutWood(getUserInputInt("Combien de villageois voulez-vous envoyer ?"));
+                break;
+            case "3":
+                buildHouse(getUserInputInt("Combien de maisons voulez-vous construire ?"));
+                break;
+            case "4":
+                upgradeRessource();
+                break;
+            case "5":
+                upgradeForest();
+                break;
+            case "6":
+                upgradeMine();
+                break;
+            case "7":
+                lookAround();
+                break;
+            case "8":
+                isPlaying = false;
+                break;
+        }
+
+
+    }
+    public void displayInfos()
+    {
+        System.Console.WriteLine($"# NB HOUSE : {listHouse.Length} | NB VILLAGERS : {villageois} | NB WOOD : {_myRessources.getWood()} | NB STONES : {_myRessources.getStone()} | LVL RES: {_myRessources.level}  | LVL FOREST: {_myRessources.level} | LVL MINE: {_myRessources.level} #");
+    }
+    private string getUserInputString(string msg)
+    {
+        string userInput = "";
+        while (userInput.Length == 0)
+        {
+            System.Console.WriteLine(msg);
+            userInput = Console.ReadLine();
+        }
+        return userInput;
+    }
+    private int getUserInputInt(string msg)
+    {
+        int userInput = -1;
+        while (userInput < 0)
+        {
+            System.Console.WriteLine(msg);
+            string userInputString = Console.ReadLine();
+            if (int.TryParse(userInputString, out int result))
+                userInput = Convert.ToInt32(userInputString);
+        }
+        return userInput;
     }
 }
