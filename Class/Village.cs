@@ -83,6 +83,27 @@ class Village
 
     public void buildHouse(int nbr)
     {
+        int woodNeeded = nbr * House.wood_needed;
+        int stoneNeeded = nbr * House.stone_needed;
+
+        // check ressources suffisantes pour les maisons
+        if (woodNeeded > _myRessources.getWood() || stoneNeeded > _myRessources.getStone())
+        {
+            // Erreur
+            System.Console.WriteLine("Not enough ressources.");
+        }
+        else
+        {
+            // update des ressources
+            _myRessources.useWood(woodNeeded);
+            _myRessources.useStone(stoneNeeded);
+
+            // Création des houses
+            for (int i = 0; i < nbr; i++)
+            {
+                addHouse();
+            }
+        }
 
     }
 }
