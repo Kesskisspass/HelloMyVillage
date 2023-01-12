@@ -1,7 +1,9 @@
 class Tools
 {
-    // Tools 
+    // Tools utilisés pour l'app
+
     // Input User (string & int)
+    // A utiliser lorsqu'on a besoin d'un input user de type String
     static public string getUserInputString(string msg)
     {
         string userInput = "";
@@ -12,6 +14,8 @@ class Tools
         }
         return userInput;
     }
+
+    // A utiliser lorsqu'on a besoin d'un input user de type Int
     static public int getUserInputInt(string msg)
     {
         int userInput = -1;
@@ -26,6 +30,7 @@ class Tools
     }
 
     // Valid Action msg
+    // Renvoie un message felicitation random lorsqu'une action utilisateur a reussi
     static public void displayValidationMsg()
     {
         var rnd = new Random();
@@ -37,16 +42,16 @@ class Tools
         Console.Write(validationMessage);
         Console.ResetColor();
         System.Console.WriteLine();
-
     }
 
-
-    // Error message 
+    // Error message
+    // Renvoie le msg en parametre en rouge (action utilisateur n'a pas pu aboutir)
     static public void displayErrorMessage(string msg)
     {
         Console.BackgroundColor = ConsoleColor.Red;
         Console.ForegroundColor = ConsoleColor.Black;
         Console.Write(msg);
         Console.ResetColor();
+        System.Console.WriteLine();
     }
 }

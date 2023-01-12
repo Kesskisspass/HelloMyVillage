@@ -156,7 +156,6 @@ class Village
         }
         else
         {
-            // System.Console.WriteLine("Not enough ressources.");
             Tools.displayErrorMessage("Vous n'avez pas assez de bois pour cela.");
         }
 
@@ -215,7 +214,7 @@ class Village
         System.Console.WriteLine($"# NB MAISON : {listHouse.Length} | NB VILLAGEOIS : {villageois} | NB BOIS : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB PIERRES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | NIV RES: {_myRessources.level}  | NIV FORET: {myForest.getLevel()} | NIV MINE: {myMine.getLevel()} #");
     }
 
-    // Display Debut jeu
+    // Display Accueil jeu
     public void displayWelcome()
     {
         Console.Clear();
