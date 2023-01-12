@@ -3,9 +3,9 @@ class Ressources
     private int _woods;
     private int _stones;
     public int level;
-    private int wood_max;
-    private int stones_max;
-    private int ressources_max = 250;
+    private int _wood_max;
+    private int _stones_max;
+    // private int _ressources_max = 250;
 
     //Constructeur par défaut
     public Ressources()
@@ -13,6 +13,8 @@ class Ressources
         _woods = 10;
         _stones = 10;
         level = 1;
+        _wood_max = 250;
+        _stones_max = 250;
     }
 
     // getters
@@ -25,6 +27,14 @@ class Ressources
     {
         return _stones;
     }
+    public int getWoodMax()
+    {
+        return _wood_max;
+    }
+    public int getStonesMax()
+    {
+        return _stones_max;
+    }
 
 
     public void useStone(int nbr)
@@ -35,7 +45,7 @@ class Ressources
         }
         else
         {
-            Console.WriteLine($"You can't use {nbr} stones, you have only {_stones} stones.");
+            Village.displayErrorMessage($"You can't use {nbr} stones, you have only {_stones} stones.");
         }
     }
 
@@ -47,33 +57,39 @@ class Ressources
         }
         else
         {
-            Console.WriteLine($"You can't use {nbr} woods, you have only {_woods} woods.");
+            Village.displayErrorMessage($"You can't use {nbr} woods, you have only {_woods} woods.");
         }
     }
 
     public void addStone(int nbr)
     {
-        if ((_stones + nbr) < ressources_max)
+        if ((_stones + nbr) < _stones_max)
             _stones += nbr;
         else
-            _stones = ressources_max;
+            _stones = _stones_max;
 
     }
     public void addWood(int nbr)
     {
-        if ((_woods + nbr) < ressources_max)
+        if ((_woods + nbr) < _wood_max)
             _woods += nbr;
         else
-            _woods = ressources_max;
+            _woods = _wood_max;
     }
 
     public void upgrade()
     {
-        _woods = (_woods * 8) / 10;
-        _stones = (_stones * 8) / 10;
-        ressources_max *= 2;
-        level++;
+        if ((_woods >= (_wood_max * 8 / 10)) && _stones >= (_stones_max * 8 / 10))
+        {
+            _woods -= (_woods * 8) / 10;
+            _stones -= (_stones * 8) / 10;
+            _wood_max *= 2;
+            _stones_max *= 2;
+            level++;
+        }
+        else
+        {
+            Village.displayErrorMessage("Not enough ressources to upgrade !");
+        }
     }
-
-
 }
