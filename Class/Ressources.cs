@@ -2,20 +2,17 @@ class Ressources
 {
     private int _woods;
     private int _stones;
+    public int level;
+    private int wood_max;
+    private int stones_max;
+    private int ressources_max = 250;
+
     //Constructeur par défaut
     public Ressources()
     {
         _woods = 10;
         _stones = 10;
     }
-
-    // Constructeur parametrique (non demandé)
-    // public Ressources(int woods, int stones)
-    // {
-    //     this._woods = woods;
-    //     this._stones = stones;
-    // }
-
 
     // getters
     public int getWood()
@@ -55,11 +52,26 @@ class Ressources
 
     public void addStone(int nbr)
     {
-        _stones += nbr;
+        if ((_stones + nbr) < ressources_max)
+            _stones += nbr;
+        else
+            _stones = ressources_max;
+
     }
     public void addWood(int nbr)
     {
-        _woods += nbr;
+        if ((_woods + nbr) < ressources_max)
+            _woods += nbr;
+        else
+            _woods = ressources_max;
+    }
+
+    public void upgrade()
+    {
+        _woods = (_woods * 8) / 10;
+        _stones = (_stones * 8) / 10;
+        ressources_max *= 2;
+        level++;
     }
 
 

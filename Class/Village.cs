@@ -104,6 +104,17 @@ class Village
                 addHouse();
             }
         }
-
+    }
+    public void upgradeRessource()
+    {
+        _myRessources.upgrade();
+    }
+    public void lookAround()
+    {
+        if (_myRessources.level >= 1)
+        {
+            _myRessources.addStone(1);
+            _myRessources.addWood(1);
+        }
     }
 }
