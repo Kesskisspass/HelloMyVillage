@@ -1,0 +1,15 @@
+C:\Users\kessk\Desktop\TP\HelloMyVillage\bin\Debug\net7.0\HelloMyVillage.exe
+C:\Users\kessk\Desktop\TP\HelloMyVillage\bin\Debug\net7.0\HelloMyVillage.deps.json
+C:\Users\kessk\Desktop\TP\HelloMyVillage\bin\Debug\net7.0\HelloMyVillage.runtimeconfig.json
+C:\Users\kessk\Desktop\TP\HelloMyVillage\bin\Debug\net7.0\HelloMyVillage.dll
+C:\Users\kessk\Desktop\TP\HelloMyVillage\bin\Debug\net7.0\HelloMyVillage.pdb
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.csproj.AssemblyReference.cache
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.AssemblyInfoInputs.cache
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.AssemblyInfo.cs
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.csproj.CoreCompileInputs.cache
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.dll
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\refint\HelloMyVillage.dll
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.pdb
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\HelloMyVillage.genruntimeconfig.cache
+C:\Users\kessk\Desktop\TP\HelloMyVillage\obj\Debug\net7.0\ref\HelloMyVillage.dll
