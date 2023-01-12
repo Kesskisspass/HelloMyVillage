@@ -11,5 +11,9 @@ void main()
     // Console.WriteLine(myVillage.listHouse.Length); // affichera 3
     Console.WriteLine(myVillage.villageois); // affichera 30
 
+    Console.WriteLine(Mine.gain_stone); // affichera 10
+    Console.WriteLine(Mine.stone_cost); // affichera 2
+    Console.WriteLine(Mine.wood_cost); // affichera 1
+
 }
 main();
