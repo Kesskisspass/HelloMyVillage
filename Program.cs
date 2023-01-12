@@ -3,18 +3,14 @@
 // 
 void main()
 {
-    Village myVillage = new Village("Victor le createur");
-    myVillage.mineStone(50); // Affichera: Il n'y a pas assez de villageois
-    Console.WriteLine(myVillage.getStone()); // Affichera 10
-    Console.WriteLine(myVillage.getWood());// Affichera 10
-    myVillage.mineStone(6); // Affichera : Il n'y a pas assez de ressources
-    Console.WriteLine(myVillage.getStone()); // Affichera 10
-    Console.WriteLine(myVillage.getWood()); // Affichera 10
-    myVillage.mineStone(5);
-    myVillage.mineStone(5);
-    Console.WriteLine(myVillage.getStone()); // Affichera 90
-    Console.WriteLine(myVillage.getWood()); // Affichera 0
-    myVillage.mineStone(5); // Affichera : Il n'y a pas assez de ressources
+    Console.WriteLine(Forest.gain_wood); //affichera 10
+    Console.WriteLine(Forest.stone_cost); //affichera 2
+    Console.WriteLine(Forest.wood_cost); //affichera 1
+    Forest test = new Forest();
+    // test.wood_cost // --> erreur
+    // test.gain_wood // --> erreur
+    // Forest.gain_wood = 123 // --> erreur
+    // test.gain_wood = 329 // --> erreur
 
 }
 main();
