@@ -6,10 +6,14 @@ public class Forest
     private int level = 1;
     public int cutWood(int villagers)
     {
-        return villagers * gain_wood;
+        return villagers * gain_wood * level;
     }
     public int getLevel()
     {
         return level;
+    }
+    public void upgrade()
+    {
+        level++;
     }
 }

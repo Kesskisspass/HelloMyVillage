@@ -117,4 +117,30 @@ class Village
             _myRessources.addWood(1);
         }
     }
+    public void upgradeMine()
+    {
+        int cout = ((myMine.getLevel() + 1) * Mine.gain_stone) * 10;
+        if (_myRessources.getStone() >= cout)
+        {
+            _myRessources.useStone(cout);
+        }
+        else
+        {
+            System.Console.WriteLine("Not enough ressources.");
+        }
+
+    }
+    public void upgradeForest()
+    {
+        int cout = ((myForest.getLevel() + 1) * Forest.gain_wood) * 10;
+        if (_myRessources.getWood() >= cout)
+        {
+            _myRessources.useWood(cout);
+        }
+        else
+        {
+            System.Console.WriteLine("Not enough ressources.");
+        }
+
+    }
 }

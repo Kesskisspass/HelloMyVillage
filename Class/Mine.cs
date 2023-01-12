@@ -12,10 +12,14 @@ public class Mine
 
     public int mineStone(int villagers)
     {
-        return villagers * gain_stone;
+        return villagers * gain_stone * level;
     }
     public int getLevel()
     {
         return level;
+    }
+    public void upgrade()
+    {
+        level++;
     }
 }
