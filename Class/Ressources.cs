@@ -53,5 +53,10 @@ class Ressources
         }
     }
 
+    public void addStone(int nbr)
+    {
+        _stones += nbr;
+    }
+
 
 }
