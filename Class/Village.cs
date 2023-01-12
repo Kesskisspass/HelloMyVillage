@@ -19,6 +19,8 @@ class Village
         this.myMine = new Mine();
         this.myForest = new Forest();
 
+
+        displayWelcome();
         isPlaying = true;
         while (isPlaying)
         {
@@ -49,43 +51,45 @@ class Village
     {
         if (villagers > this.villageois)
         {
-            displayErrorMessage("Not enough villagers.");
+            Tools.displayErrorMessage("Pas assez de villageois...");
             return;
         }
         if (_myRessources.getWood() < (villagers * Mine.wood_cost))
         {
-            displayErrorMessage("Not enough wood.");
+            Tools.displayErrorMessage("Pas assez de bois...");
             return;
         }
         if (_myRessources.getStone() < (villagers * Mine.stone_cost))
         {
-            displayErrorMessage("Not enough stones.");
+            Tools.displayErrorMessage("Pas assez de pierres...");
             return;
         }
         _myRessources.useWood(villagers * Mine.wood_cost);
         _myRessources.useStone(villagers * Mine.stone_cost);
         _myRessources.addStone(myMine.mineStone(villagers));
+        Tools.displayValidationMsg();
     }
     public void cutWood(int villagers)
     {
         if (villagers > this.villageois)
         {
-            displayErrorMessage("Not enough villagers.");
+            Tools.displayErrorMessage("Pas assez de villageois...");
             return;
         }
         if (_myRessources.getWood() < (villagers * Forest.wood_cost))
         {
-            displayErrorMessage("Not enough wood.");
+            Tools.displayErrorMessage("Pas assez de bois...");
             return;
         }
         if (_myRessources.getStone() < (villagers * Forest.stone_cost))
         {
-            displayErrorMessage("Not enough stones.");
+            Tools.displayErrorMessage("Pas assez de pierres...");
             return;
         }
         _myRessources.useWood(villagers * Forest.wood_cost);
         _myRessources.useStone(villagers * Forest.stone_cost);
         _myRessources.addWood(myForest.cutWood(villagers));
+        Tools.displayValidationMsg();
     }
 
     public void buildHouse(int nbr)
@@ -97,7 +101,7 @@ class Village
         if (woodNeeded > _myRessources.getWood() || stoneNeeded > _myRessources.getStone())
         {
             // Erreur
-            displayErrorMessage("Not enough ressources.");
+            Tools.displayErrorMessage("Il vous manque du bois ou des pierres pour construire ces maisons.");
         }
         else
         {
@@ -110,6 +114,7 @@ class Village
             {
                 addHouse();
             }
+            Tools.displayValidationMsg();
         }
     }
     public void upgradeRessource()
@@ -122,34 +127,37 @@ class Village
         {
             _myRessources.addStone(1);
             _myRessources.addWood(1);
+            Tools.displayValidationMsg();
         }
     }
     public void upgradeMine()
     {
-        int cout = ((myMine.getLevel() + 1) * Mine.gain_stone) * 10;
-        if (_myRessources.getStone() >= cout)
+        int cost = ((myMine.getLevel() + 1) * Mine.gain_stone) * 10;
+        if (_myRessources.getStone() >= cost)
         {
-            _myRessources.useStone(cout);
+            _myRessources.useStone(cost);
             myMine.upgrade();
+            Tools.displayValidationMsg();
         }
         else
         {
-            displayErrorMessage("Not enough ressources.");
+            Tools.displayErrorMessage("Pas assez de pierres pour cela.");
         }
 
     }
     public void upgradeForest()
     {
-        int cout = ((myForest.getLevel() + 1) * Forest.gain_wood) * 10;
-        if (_myRessources.getWood() >= cout)
+        int cost = ((myForest.getLevel() + 1) * Forest.gain_wood) * 10;
+        if (_myRessources.getWood() >= cost)
         {
-            _myRessources.useWood(cout);
+            _myRessources.useWood(cost);
             myForest.upgrade();
+            Tools.displayValidationMsg();
         }
         else
         {
             // System.Console.WriteLine("Not enough ressources.");
-            displayErrorMessage("Not enough ressources.");
+            Tools.displayErrorMessage("Vous n'avez pas assez de bois pour cela.");
         }
 
     }
@@ -157,90 +165,62 @@ class Village
     {
         // Console.Clear();
         System.Console.WriteLine();
-        System.Console.WriteLine("########################################################################################################################");
+        System.Console.WriteLine("##########################################################################################################################");
         displayInfos();
-        System.Console.WriteLine("########################################################################################################################");
-        System.Console.WriteLine("1 - Mine Stones");
-        System.Console.WriteLine("2 - Cut Wood");
-        System.Console.WriteLine("3 - Build House");
-        System.Console.WriteLine("4 - Upgrade Ressources");
-        System.Console.WriteLine("5 - Upgrade Forest");
-        System.Console.WriteLine("6 - Upgrade Mine");
-        System.Console.WriteLine("7 - Look Around");
+        System.Console.WriteLine("##########################################################################################################################");
+        System.Console.WriteLine("1 - Ramasser des pierres à la mine");
+        System.Console.WriteLine("2 - Couper du bois");
+        System.Console.WriteLine("3 - Construire des maisons");
+        System.Console.WriteLine("4 - Augmenter le stockage des ressources");
+        System.Console.WriteLine("5 - Agrandir votre forêt");
+        System.Console.WriteLine("6 - Agrandir votre mine");
+        System.Console.WriteLine("7 - Chercher un peu autour de vous");
         System.Console.WriteLine("8 - Quitter");
-        System.Console.WriteLine("########################################################################################################################");
+        System.Console.WriteLine("##########################################################################################################################");
         System.Console.WriteLine();
-        System.Console.WriteLine("Que choisissez-vous faire ?");
 
-        string userInput = Console.ReadLine();
+        int userInput = Tools.getUserInputInt("Que choisissez-vous de faire ?");
 
         switch (userInput)
         {
-            case "1":
-                mineStone(getUserInputInt("Combien de villageois voulez-vous envoyer ?"));
+            case 1:
+                mineStone(Tools.getUserInputInt("Combien de villageois voulez-vous envoyer à la mine ?"));
                 break;
-            case "2":
-                cutWood(getUserInputInt("Combien de villageois voulez-vous envoyer ?"));
+            case 2:
+                cutWood(Tools.getUserInputInt("Combien de villageois voulez-vous envoyer couper du bois?"));
                 break;
-            case "3":
-                buildHouse(getUserInputInt("Combien de maisons voulez-vous construire ?"));
+            case 3:
+                buildHouse(Tools.getUserInputInt("Combien de maisons voulez-vous construire ?"));
                 break;
-            case "4":
+            case 4:
                 upgradeRessource();
                 break;
-            case "5":
+            case 5:
                 upgradeForest();
                 break;
-            case "6":
+            case 6:
                 upgradeMine();
                 break;
-            case "7":
+            case 7:
                 lookAround();
                 break;
-            case "8":
+            case 8:
                 isPlaying = false;
                 break;
         }
-
-
     }
     //  Display All Info Village
     public void displayInfos()
     {
-        System.Console.WriteLine($"# NB HOUSE : {listHouse.Length} | NB VILLAGERS : {villageois} | NB WOOD : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB STONES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | LVL RES: {_myRessources.level}  | LVL FOREST: {myForest.getLevel()} | LVL MINE: {myMine.getLevel()} #");
+        System.Console.WriteLine($"# NB MAISON : {listHouse.Length} | NB VILLAGEOIS : {villageois} | NB BOIS : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB PIERRES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | NIV RES: {_myRessources.level}  | NIV FORET: {myForest.getLevel()} | NIV MINE: {myMine.getLevel()} #");
     }
 
-    // Tools 
-    // Input User (string & int)
-    static public string getUserInputString(string msg)
+    // Display Debut jeu
+    public void displayWelcome()
     {
-        string userInput = "";
-        while (userInput.Length == 0)
-        {
-            System.Console.WriteLine(msg);
-            userInput = Console.ReadLine();
-        }
-        return userInput;
-    }
-    static public int getUserInputInt(string msg)
-    {
-        int userInput = -1;
-        while (userInput < 0)
-        {
-            System.Console.WriteLine(msg);
-            string userInputString = Console.ReadLine();
-            if (int.TryParse(userInputString, out int result))
-                userInput = Convert.ToInt32(userInputString);
-        }
-        return userInput;
-    }
-
-    // Error message 
-    static public void displayErrorMessage(string msg)
-    {
-        Console.BackgroundColor = ConsoleColor.Red;
-        Console.ForegroundColor = ConsoleColor.Black;
-        Console.Write(msg);
-        Console.ResetColor();
+        Console.Clear();
+        System.Console.WriteLine("########################");
+        System.Console.WriteLine($"# BIENVENUE A {_name.ToUpper()} #");
+        System.Console.WriteLine("########################");
     }
 }

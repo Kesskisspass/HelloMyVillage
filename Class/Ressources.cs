@@ -45,7 +45,7 @@ class Ressources
         }
         else
         {
-            Village.displayErrorMessage($"You can't use {nbr} stones, you have only {_stones} stones.");
+            Tools.displayErrorMessage($"Vous ne pouvez pas utiliser {nbr} pierres, vous avez seulement {_stones} pierres.");
         }
     }
 
@@ -57,7 +57,7 @@ class Ressources
         }
         else
         {
-            Village.displayErrorMessage($"You can't use {nbr} woods, you have only {_woods} woods.");
+            Tools.displayErrorMessage($"Vous ne pouvez pas utiliser {nbr} bois, vous avez seulement {_woods} bois.");
         }
     }
 
@@ -86,10 +86,11 @@ class Ressources
             _wood_max *= 2;
             _stones_max *= 2;
             level++;
+            Tools.displayValidationMsg();
         }
         else
         {
-            Village.displayErrorMessage("Not enough ressources to upgrade !");
+            Tools.displayErrorMessage("Vous n'avez pas suffisamment de pierres ou de bois pour augmenter vos capacités de stockage !");
         }
     }
 }
