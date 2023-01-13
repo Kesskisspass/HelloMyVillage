@@ -10,7 +10,7 @@ class Tools
         while (userInput.Length == 0)
         {
             System.Console.WriteLine(msg);
-            userInput = Console.ReadLine();
+            userInput = Console.ReadLine().Trim();
         }
         return userInput;
     }
@@ -22,9 +22,15 @@ class Tools
         while (userInput < 0)
         {
             System.Console.WriteLine(msg);
-            string userInputString = Console.ReadLine();
+            string? userInputString = Console.ReadLine();
             if (int.TryParse(userInputString, out int result))
+            {
                 userInput = Convert.ToInt32(userInputString);
+            }
+            else
+            {
+                displayErrorMessage("Vous devez entrer un chiffre.");
+            }
         }
         return userInput;
     }
@@ -54,4 +60,14 @@ class Tools
         Console.ResetColor();
         System.Console.WriteLine();
     }
+
+    // Display Accueil jeu
+    static public void displayWelcome(string name)
+    {
+        Console.Clear();
+        System.Console.WriteLine("########################");
+        System.Console.WriteLine($"# BIENVENUE A {name.ToUpper()} #");
+        System.Console.WriteLine("########################");
+    }
+
 }

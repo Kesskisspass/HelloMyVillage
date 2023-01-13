@@ -20,7 +20,7 @@ class Village
         this.myForest = new Forest();
 
 
-        displayWelcome();
+        Tools.displayWelcome(_name);
         isPlaying = true;
         while (isPlaying)
         {
@@ -162,7 +162,6 @@ class Village
     }
     public void displayMenu()
     {
-        // Console.Clear();
         System.Console.WriteLine();
         System.Console.WriteLine("##########################################################################################################################");
         displayInfos();
@@ -207,6 +206,9 @@ class Village
                 isPlaying = false;
                 break;
         }
+        // Display Error if case != 1 - 8
+        if (userInput < 1 || userInput > 8)
+            Tools.displayErrorMessage("Vous devez entrer un chiffre entre 1 et 8 pour indiquer votre choix.");
     }
     //  Display All Info Village
     public void displayInfos()
@@ -214,12 +216,5 @@ class Village
         System.Console.WriteLine($"# NB MAISON : {listHouse.Length} | NB VILLAGEOIS : {villageois} | NB BOIS : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB PIERRES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | NIV RES: {_myRessources.level}  | NIV FORET: {myForest.getLevel()} | NIV MINE: {myMine.getLevel()} #");
     }
 
-    // Display Accueil jeu
-    public void displayWelcome()
-    {
-        Console.Clear();
-        System.Console.WriteLine("########################");
-        System.Console.WriteLine($"# BIENVENUE A {_name.ToUpper()} #");
-        System.Console.WriteLine("########################");
-    }
+
 }
