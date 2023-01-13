@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj": {}
+    "C:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj": {}
   },
   "projects": {
-    "c:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj": {
+    "C:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj",
+        "projectUniqueName": "C:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj",
         "projectName": "HelloMyVillage",
-        "projectPath": "c:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj",
+        "projectPath": "C:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\HelloMyVillage.csproj",
         "packagesPath": "C:\\Users\\kessk\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\obj\\",
+        "outputPath": "C:\\Users\\kessk\\Desktop\\TP\\HelloMyVillage\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
