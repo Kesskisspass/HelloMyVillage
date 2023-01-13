@@ -40,7 +40,7 @@ class Tools
     static public void displayValidationMsg()
     {
         var rnd = new Random();
-        string[] congrats = { "Joli travail !", "Félicitations !", "Bien joué !", "Impressionnant !", "Incroyable !", "Fantastique !", "Trop fort !", "Chapeau bas !", "Sortez le champagne !" };
+        string[] congrats = { "Joli travail !", "Félicitations !", "Bien joué !", "Impressionnant !", "Incroyable !", "Fantastique !", "Trop fort !", "Pas mal du tout !", "Sortez le champagne !" };
         var randomIndex = rnd.Next(congrats.Length);
         string validationMessage = congrats[randomIndex];
         Console.BackgroundColor = ConsoleColor.Green;

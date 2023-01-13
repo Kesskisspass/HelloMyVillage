@@ -1,7 +1,8 @@
-public class Mine
+class Mine
 {
     public static readonly int gain_stone = 10;
     public static readonly int stone_cost = 2;
+    public static readonly int water_cost = 1;
     public static readonly int wood_cost = 1;
     private int level = 1;
 

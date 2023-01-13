@@ -7,6 +7,7 @@ class Village
     public House[] listHouse;
     public Mine myMine;
     public Forest myForest;
+    public Well myWell;
     public bool isPlaying;
 
     public Village(string name)
@@ -18,6 +19,7 @@ class Village
         this.listHouse = new House[] { this.chefHome };
         this.myMine = new Mine();
         this.myForest = new Forest();
+        this.myWell = new Well();
 
 
         Tools.displayWelcome(_name);
@@ -64,8 +66,14 @@ class Village
             Tools.displayErrorMessage("Pas assez de pierres...");
             return;
         }
+        if (_myRessources.getWater() < (villagers * Mine.water_cost))
+        {
+            Tools.displayErrorMessage("Pas assez d'eau...");
+            return;
+        }
         _myRessources.useWood(villagers * Mine.wood_cost);
         _myRessources.useStone(villagers * Mine.stone_cost);
+        _myRessources.useWater(villagers * Mine.water_cost);
         _myRessources.addStone(myMine.mineStone(villagers));
         Tools.displayValidationMsg();
     }
@@ -86,9 +94,43 @@ class Village
             Tools.displayErrorMessage("Pas assez de pierres...");
             return;
         }
+        if (_myRessources.getWater() < (villagers * Forest.water_cost))
+        {
+            Tools.displayErrorMessage("Pas assez d'eau...");
+            return;
+        }
         _myRessources.useWood(villagers * Forest.wood_cost);
         _myRessources.useStone(villagers * Forest.stone_cost);
+        _myRessources.useWater(villagers * Forest.water_cost);
         _myRessources.addWood(myForest.cutWood(villagers));
+        Tools.displayValidationMsg();
+    }
+    public void bringWater(int villagers)
+    {
+        if (villagers > this.villageois)
+        {
+            Tools.displayErrorMessage("Pas assez de villageois...");
+            return;
+        }
+        if (_myRessources.getWood() < (villagers * Well.wood_cost))
+        {
+            Tools.displayErrorMessage("Pas assez de bois...");
+            return;
+        }
+        if (_myRessources.getStone() < (villagers * Well.stone_cost))
+        {
+            Tools.displayErrorMessage("Pas assez de pierres...");
+            return;
+        }
+        if (_myRessources.getWater() < (villagers * Well.water_cost))
+        {
+            Tools.displayErrorMessage("Pas assez d'eau...");
+            return;
+        }
+        _myRessources.useWood(villagers * Well.wood_cost);
+        _myRessources.useStone(villagers * Well.stone_cost);
+        _myRessources.useWater(villagers * Well.water_cost);
+        _myRessources.addWater(myWell.bringWater(villagers));
         Tools.displayValidationMsg();
     }
 
@@ -127,6 +169,7 @@ class Village
         {
             _myRessources.addStone(1);
             _myRessources.addWood(1);
+            _myRessources.addWater(1);
             Tools.displayValidationMsg();
         }
     }
@@ -160,21 +203,36 @@ class Village
         }
 
     }
+    public void upgradeWell()
+    {
+        int cost = ((myWell.getLevel() + 1) * Well.gain_water) * 10;
+        if (_myRessources.getWater() >= cost)
+        {
+            _myRessources.useWater(cost);
+            myWell.upgrade();
+            Tools.displayValidationMsg();
+        }
+        else
+        {
+            Tools.displayErrorMessage("Vous n'avez pas assez d'eau pour cela.");
+        }
+
+    }
     public void displayMenu()
     {
         System.Console.WriteLine();
-        System.Console.WriteLine("##########################################################################################################################");
         displayInfos();
-        System.Console.WriteLine("##########################################################################################################################");
         System.Console.WriteLine("1 - Ramasser des pierres à la mine");
         System.Console.WriteLine("2 - Couper du bois");
-        System.Console.WriteLine("3 - Construire des maisons");
-        System.Console.WriteLine("4 - Augmenter le stockage des ressources");
-        System.Console.WriteLine("5 - Agrandir votre forêt");
-        System.Console.WriteLine("6 - Agrandir votre mine");
-        System.Console.WriteLine("7 - Chercher un peu autour de vous");
-        System.Console.WriteLine("8 - Quitter");
-        System.Console.WriteLine("##########################################################################################################################");
+        System.Console.WriteLine("3 - Aller chercher de l'eau au puit");
+        System.Console.WriteLine("4 - Construire des maisons");
+        System.Console.WriteLine("5 - Augmenter le stockage des ressources");
+        System.Console.WriteLine("6 - Agrandir votre forêt");
+        System.Console.WriteLine("7 - Agrandir votre mine");
+        System.Console.WriteLine("8 - Agrandir votre puit");
+        System.Console.WriteLine("9 - Chercher un peu autour de vous");
+        System.Console.WriteLine("10 - Quitter");
+        System.Console.WriteLine("##########################################################################################################################################################");
         System.Console.WriteLine();
 
         int userInput = Tools.getUserInputInt("Que choisissez-vous de faire ?");
@@ -188,32 +246,49 @@ class Village
                 cutWood(Tools.getUserInputInt("Combien de villageois voulez-vous envoyer couper du bois?"));
                 break;
             case 3:
-                buildHouse(Tools.getUserInputInt("Combien de maisons voulez-vous construire ?"));
+                bringWater(Tools.getUserInputInt("Combien de villageois voulez-vous envoyer chercher de l'eau?"));
                 break;
             case 4:
-                upgradeRessource();
+                buildHouse(Tools.getUserInputInt("Combien de maisons voulez-vous construire ?"));
                 break;
             case 5:
-                upgradeForest();
+                upgradeRessource();
                 break;
             case 6:
-                upgradeMine();
+                upgradeForest();
                 break;
             case 7:
-                lookAround();
+                upgradeMine();
                 break;
             case 8:
+                upgradeWell();
+                break;
+            case 9:
+                lookAround();
+                break;
+            case 10:
                 isPlaying = false;
                 break;
         }
-        // Display Error if case != 1 - 8
-        if (userInput < 1 || userInput > 8)
-            Tools.displayErrorMessage("Vous devez entrer un chiffre entre 1 et 8 pour indiquer votre choix.");
+        // Display Error if case != 1 - 10
+        if (userInput < 1 || userInput > 10)
+            Tools.displayErrorMessage("Vous devez entrer un nombre entre 1 et 10 pour indiquer votre choix.");
     }
     //  Display All Info Village
     public void displayInfos()
     {
-        System.Console.WriteLine($"# NB MAISON : {listHouse.Length} | NB VILLAGEOIS : {villageois} | NB BOIS : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB PIERRES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | NIV RES: {_myRessources.level}  | NIV FORET: {myForest.getLevel()} | NIV MINE: {myMine.getLevel()} #");
+        string infosVillage = $"# NB MAISON : {listHouse.Length} | NB VILLAGEOIS : {villageois} | NB BOIS : {_myRessources.getWood()}/{_myRessources.getWoodMax()} | NB PIERRES : {_myRessources.getStone()}/{_myRessources.getStonesMax()} | NB EAU : {_myRessources.getWater()}/{_myRessources.getWaterMax()} | NIV RES: {_myRessources.level}  | NIV FORET: {myForest.getLevel()} | NIV MINE: {myMine.getLevel()} | NIV EAU: {myWell.getLevel()} #";
+
+        // Boucle pour afficher un ligne "#" de la meme taille que les infos
+        for (int i = 0; i < infosVillage.Length; i++)
+            System.Console.Write("#");
+        System.Console.WriteLine();
+
+        System.Console.WriteLine(infosVillage);
+
+        for (int i = 0; i < infosVillage.Length; i++)
+            System.Console.Write("#");
+        System.Console.WriteLine();
     }
 
 
