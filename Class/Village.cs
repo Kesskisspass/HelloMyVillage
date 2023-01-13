@@ -273,6 +273,8 @@ class Village
         // Display Error if case != 1 - 10
         if (userInput < 1 || userInput > 10)
             Tools.displayErrorMessage("Vous devez entrer un nombre entre 1 et 10 pour indiquer votre choix.");
+
+        randomEvent();
     }
     //  Display All Info Village
     public void displayInfos()
@@ -289,6 +291,61 @@ class Village
         for (int i = 0; i < infosVillage.Length; i++)
             System.Console.Write("#");
         System.Console.WriteLine();
+    }
+
+    static public void randomEvent()
+    {
+        Random rnd = new Random();
+        int rndValue = rnd.Next(1, 10);
+
+        if (rndValue < 5)
+        {
+            warEvent();
+        }
+        else
+        {
+            System.Console.WriteLine("Tout est calme, continuons...");
+        }
+
+    }
+    static private int roll2Dices()
+    {
+        Random rnd = new Random();
+        int dice1 = rnd.Next(1, 7);
+        int dice2 = rnd.Next(1, 7);
+        return dice1 + dice2;
+    }
+    static private void warEvent()
+    {
+        System.Console.Clear();
+        Tools.displayErrorMessage("ALERTE !!! ALERTE !!! ALERTE !!!");
+        System.Threading.Thread.Sleep(2000);
+
+        System.Console.WriteLine("Un village voisin vous attaque, serez-vous à la hauteur ?");
+        int userDices = roll2Dices();
+        int enemy = roll2Dices();
+        for (int i = 0; i < 40; i++)
+        {
+            System.Console.Write(".");
+            System.Threading.Thread.Sleep(100);
+        }
+        System.Console.WriteLine();
+        System.Console.WriteLine();
+        System.Console.WriteLine("Votre village : " + userDices + " | " + "Village ennemi : " + enemy);
+        System.Console.WriteLine();
+
+        // TODO: implementer impact nb house, stock en cas de victoire /defaite
+        if (userDices > enemy)
+        {
+            System.Console.WriteLine("Vous les avez éclaté !");
+            Tools.displayValidationMsg();
+        }
+        else if (enemy > userDices)
+        {
+            Tools.displayErrorMessage("Ils vous ont marché dessus... littéralement !");
+        }
+
+
     }
 
 
